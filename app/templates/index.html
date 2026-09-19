@@ -1,29 +1,59 @@
 {% extends 'base.html' %}
+{% from '_icons.html' import icon %}
+{% block main_class %}home-main{% endblock %}
 {% block content %}
-<section class="hero mb-5">
-  <div class="hero-copy">
-    <span class="eyebrow">一个入口 · 八组协作</span>
-    <h1>让每一组的想法，<br>在这里连接。</h1>
-    <p>欢迎来到课程协作空间。统一的入口，熟悉的体验，<br class="d-none d-md-block">从这里开始探索各小组的功能模块。</p>
-    <a class="btn btn-primary px-4 py-2" href="#modules">探索功能模块 <span aria-hidden="true">↗</span></a>
-  </div>
-  <div class="hero-art" aria-hidden="true">
-    <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-    <div class="hub-core">C<span>CAMPUS HUB</span></div>
-    <span class="orbit-label label-top">统一入口</span><span class="orbit-label label-left">独立探索</span><span class="orbit-label label-right">共同构建</span>
+<section class="geo-hero" aria-labelledby="hero-title">
+  <div class="container platform-container hero-layout">
+    <div class="hero-copy">
+      <span class="hero-eyebrow"><span></span> GEOAI · 连接地理与未来教育</span>
+      <h1 id="hero-title"><span class="headline-first"><em>AI</em> 赋能地理教育，</span><br>智创未来课堂</h1>
+      <div class="hero-underline" aria-hidden="true"></div>
+      <p class="hero-subtitle">中学地理 <strong>“备、教、学、评、研”</strong></p>
+      <p class="hero-description">一站式 AI 聚合门户</p>
+      <a class="hero-action" href="#modules">探索应用中心 {{ icon('arrow') }}</a>
+    </div>
+    {# 使用现有地球纹理与 CSS 呈现轻量视觉，不依赖 Three.js 或 WebGL。 #}
+    <div class="digital-earth">
+      <div class="earth-scene" aria-hidden="true">
+        <div class="earth-halo"></div>
+        <div class="earth-orbit orbit-back"></div>
+        <div class="earth-sphere"><div class="earth-grid"></div></div>
+        <div class="earth-orbit orbit-front"></div>
+        <span class="satellite satellite-one"></span><span class="satellite satellite-two"></span>
+        <div class="earth-platform"></div>
+      </div>
+      <a class="earth-node node-knowledge" href="{{ url_for('group2.index') }}">{{ icon('book') }} 地理知识</a>
+      <a class="earth-node node-classroom" href="{{ url_for('group4.index') }}">{{ icon('file') }} 智慧课堂</a>
+      <a class="earth-node node-lab" href="{{ url_for('group8.index') }}">{{ icon('flask') }} 虚拟实验</a>
+      <span class="earth-caption">探索世界的联系 · 开启教学新可能</span>
+    </div>
   </div>
 </section>
-<section id="modules" class="mb-5">
-  <div class="d-flex justify-content-between align-items-end mb-4"><div><span class="eyebrow">EXPLORE MODULES</span><h2 class="mt-2 mb-1">功能模块</h2><p class="text-secondary mb-0">七个小组，七个探索方向。</p></div><span class="badge rounded-pill module-count">7 个模块</span></div>
-  <div class="row g-4">
-    {% for number in range(2, 9) %}
-    <div class="col-md-6 col-xl-4"><article class="module-card h-100">
-      <div class="d-flex justify-content-between align-items-center mb-4"><span class="module-icon">{{ '%02d'|format(number) }}</span><span class="status-badge"><span aria-hidden="true">●</span> 开发中</span></div>
-      <h3>Group{{ number }}</h3><p>第 {{ number }} 小组的独立功能空间。更多功能正在准备中，敬请期待。</p>
-      <a class="module-link" href="/group{{ number }}/">进入模块 <span aria-hidden="true">→</span></a>
-    </article></div>
-    {% endfor %}
-    <div class="col-md-6 col-xl-4"><aside class="collaboration-card h-100"><span class="eyebrow">BUILD TOGETHER</span><h3>各自探索，一起成长。</h3><p>每一个模块，都是团队协作的起点。以统一规范，让不同的创意相遇。</p><a href="{{ url_for('portal.about') }}">了解这个平台 <span aria-hidden="true">↗</span></a></aside></div>
+<section id="modules" class="application-center" aria-labelledby="applications-title">
+  <div class="container platform-container">
+    <div class="section-heading"><h2 id="applications-title">应用中心</h2><p>七个小组协同构建，探索地理教育全流程 AI 赋能</p><span class="section-badge">7 个模块 · 持续建设中</span></div>
+    {# 名称沿用参考样例作界面展示，Group 编号和实际访问路径保持一致。 #}
+    {% set applications = [
+      ('地理知识库', '海量地理资源', '一键检索', 'book', 'blue'),
+      ('AI工具箱', '多样化 AI 工具', '助力教学创新', 'tools', 'green'),
+      ('AI课程生成器', '智能生成教案', '课件与学案', 'file', 'orange'),
+      ('AI对话助教', '随时答疑解惑', '个性化辅导', 'chat', 'purple'),
+      ('AI辅助命题', '智能出题组卷', '精准化命题', 'check', 'red'),
+      ('AI课堂教学评价', '多维课堂评价', '精准反馈', 'chart', 'sky'),
+      ('AI实验室', '虚拟仿真实验', '探索地理奥秘', 'flask', 'cyan')
+    ] %}
+    <div class="application-grid">
+      {% for name, line_one, line_two, icon_name, color in applications %}
+      <article class="module-card app-{{ color }}">
+        <span class="module-icon">{{ icon(icon_name) }}</span>
+        <h3>{{ name }}</h3>
+        <p class="module-description">{{ line_one }}<br>{{ line_two }}</p>
+        <span class="module-status">Group{{ loop.index + 1 }} <span aria-hidden="true">·</span> 开发中</span>
+        <a class="module-link" href="{{ url_for('group' ~ (loop.index + 1) ~ '.index') }}" aria-label="进入 {{ name }}（Group{{ loop.index + 1 }}）"><span>进入模块</span>{{ icon('arrow') }}</a>
+      </article>
+      {% endfor %}
+    </div>
+    <p class="development-note">{{ icon('info') }} 各应用正在开发中，登录后可进入小组空间。一起探索，期待更多可能。</p>
   </div>
 </section>
 {% endblock %}
