@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero mb-5">
+  <div class="hero-copy">
+    <span class="eyebrow">一个入口 · 八组协作</span>
+    <h1>让每一组的想法，<br>在这里连接。</h1>
+    <p>欢迎来到课程协作空间。统一的入口，熟悉的体验，<br class="d-none d-md-block">从这里开始探索各小组的功能模块。</p>
+    <a class="btn btn-primary px-4 py-2" href="#modules">探索功能模块 <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+    <div class="hub-core">C<span>CAMPUS HUB</span></div>
+    <span class="orbit-label label-top">统一入口</span><span class="orbit-label label-left">独立探索</span><span class="orbit-label label-right">共同构建</span>
+  </div>
+</section>
+<section id="modules" class="mb-5">
+  <div class="d-flex justify-content-between align-items-end mb-4"><div><span class="eyebrow">EXPLORE MODULES</span><h2 class="mt-2 mb-1">功能模块</h2><p class="text-secondary mb-0">七个小组，七个探索方向。</p></div><span class="badge rounded-pill module-count">7 个模块</span></div>
+  <div class="row g-4">
+    {% for number in range(2, 9) %}
+    <div class="col-md-6 col-xl-4"><article class="module-card h-100">
+      <div class="d-flex justify-content-between align-items-center mb-4"><span class="module-icon">{{ '%02d'|format(number) }}</span><span class="status-badge"><span aria-hidden="true">●</span> 开发中</span></div>
+      <h3>Group{{ number }}</h3><p>第 {{ number }} 小组的独立功能空间。更多功能正在准备中，敬请期待。</p>
+      <a class="module-link" href="/group{{ number }}/">进入模块 <span aria-hidden="true">→</span></a>
+    </article></div>
+    {% endfor %}
+    <div class="col-md-6 col-xl-4"><aside class="collaboration-card h-100"><span class="eyebrow">BUILD TOGETHER</span><h3>各自探索，一起成长。</h3><p>每一个模块，都是团队协作的起点。以统一规范，让不同的创意相遇。</p><a href="{{ url_for('portal.about') }}">了解这个平台 <span aria-hidden="true">↗</span></a></aside></div>
+  </div>
+</section>
+{% endblock %}

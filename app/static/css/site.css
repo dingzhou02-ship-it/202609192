@@ -1,0 +1,39 @@
+/* 公共风格由第一组维护，各组样式放到自己的 static 目录。 */
+:root { --ink:#172b3a; --muted:#657680; --accent:#137b72; --bs-primary-rgb:19,123,114; }
+body { background:#f6f8f9; color:var(--ink); font-family:Inter,"Microsoft YaHei",system-ui,sans-serif; min-height:100vh; display:flex; flex-direction:column; }
+main { flex:1; }
+a { color:var(--accent); }
+.container { max-width:1180px; }
+.navbar { min-height:80px; }
+.navbar-brand { color:var(--ink); font-size:1.15rem; }
+.navbar-brand small { color:#87939a; font-size:.72rem; font-weight:400; }
+.brand-mark { width:34px; height:34px; display:grid; place-items:center; background:var(--accent); color:white; border-radius:10px; }
+.btn-primary { --bs-btn-bg:#137b72; --bs-btn-border-color:#137b72; --bs-btn-hover-bg:#0c6059; --bs-btn-hover-border-color:#0c6059; --bs-btn-active-bg:#0c6059; }
+.hero { background:#eaf3f1; border:1px solid #dce9e5; border-radius:20px; display:flex; align-items:center; overflow:hidden; min-height:350px; padding:48px; }
+.hero-copy { flex:1; z-index:1; }
+.eyebrow { color:var(--accent); font-size:.72rem; font-weight:700; letter-spacing:.12em; }
+.hero h1 { font-size:clamp(2rem,4vw,2.85rem); line-height:1.4; font-weight:750; margin:18px 0; letter-spacing:-.04em; }
+.hero p { color:var(--muted); line-height:1.9; font-size:.95rem; margin-bottom:25px; }
+.hero-art { width:330px; height:260px; position:relative; display:grid; place-items:center; flex-shrink:0; }
+.orbit { position:absolute; border:1px solid #bdd7cf; border-radius:50%; transform:rotate(-25deg); }
+.orbit-one { width:310px; height:190px; }.orbit-two { width:190px; height:290px; }
+.hub-core { width:110px; height:110px; border-radius:28px; background:#137b72; color:white; display:flex; align-items:center; justify-content:center; flex-direction:column; font-size:3rem; box-shadow:0 20px 40px #137b7220; }
+.hub-core span { font-size:.5rem; letter-spacing:.12em; }
+.orbit-label { position:absolute; background:#ffffffed; border:1px solid #d6e4df; padding:10px 16px; border-radius:10px; font-size:.75rem; color:#46645f; }
+.label-top { top:0; left:150px; }.label-left { left:-10px; top:140px; }.label-right { right:-10px; bottom:25px; }
+h2 { font-size:1.65rem; font-weight:700; } h3 { font-size:1.2rem; font-weight:700; }
+.module-count { background:#e8efed; color:#50685f; padding:9px 14px; font-weight:500; }
+.module-card { padding:27px; background:white; border:1px solid #e2e8eb; border-radius:14px; }
+.module-icon { width:44px; height:44px; display:grid; place-items:center; background:#edf4f2; color:var(--accent); border-radius:12px; font-weight:700; }
+.status-badge { font-size:.7rem; color:#7c888f; }.status-badge span { color:#c3a15e; margin-right:5px; font-size:.5rem; }
+.module-card p,.collaboration-card p { color:var(--muted); font-size:.875rem; line-height:1.9; margin:12px 0 22px; }
+.module-link { border-top:1px solid #edf0f2; padding-top:16px; display:flex; justify-content:space-between; text-decoration:none; font-weight:600; font-size:.85rem; }
+.module-link:hover { color:#074c46; }.module-link:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+.collaboration-card { padding:32px 27px; border:1px dashed #c9d9d4; border-radius:14px; background:#f0f5f3; }
+.collaboration-card h3 { margin-top:25px; }.collaboration-card a { font-size:.85rem; }
+footer { background:white; color:#7a8891; font-size:.75rem; }.footer-dot { color:var(--accent); font-size:.5rem; margin:0 7px; }
+.content-panel { max-width:780px; background:white; border:1px solid #e2e8eb; border-radius:18px; padding:40px; }
+.auth-panel { max-width:460px; }.auth-panel h1 { font-size:1.75rem; }.form-control { padding:11px 13px; }.form-control:focus { border-color:var(--accent); box-shadow:0 0 0 .2rem #137b721c; }
+.placeholder-number { display:inline-grid; place-items:center; width:70px; height:70px; border-radius:20px; background:#eaf3f1; color:var(--accent); font-size:1.7rem; font-weight:700; }
+@media (max-width:991px) { .hero-art { width:250px; transform:scale(.85); } }
+@media (max-width:767px) { .hero { padding:30px 24px; min-height:auto; }.hero-art { display:none; }.content-panel { padding:28px 22px; }.navbar-brand small { display:none; } }

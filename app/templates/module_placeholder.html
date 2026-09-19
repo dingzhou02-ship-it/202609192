@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Group{{ group_number }} 功能模块 · 协作空间{% endblock %}
+{% block content %}
+<section class="content-panel mx-auto text-center py-5 my-lg-4">
+  <span class="placeholder-number mb-4">{{ '%02d'|format(group_number) }}</span>
+  <h1 class="h2">Group{{ group_number }} 功能模块</h1>
+  <p class="text-secondary mt-3 mb-4">当前功能正在开发中</p>
+  <p class="small text-secondary">这里是第 {{ group_number }} 小组的独立空间，期待与你分享更多精彩。</p>
+  <a class="btn btn-primary mt-3 px-4" href="{{ url_for('portal.index') }}">返回首页</a>
+</section>
+{% endblock %}

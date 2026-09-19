@@ -1,0 +1,47 @@
+# 此文件放在 Nginx 的 conf.d/campus.conf 中（属于 http 上下文）。
+# 当前模板：Nginx 在宿主机运行，所有 URL 均交给一个 Gunicorn。
+# 地址是本机演示值。部署时第一组按 .env 中的实际地址生成配置；
+# Nginx 不会自行读取 .env，不要直接写 $DATABASE_URL 等环境变量。
+upstream portal_backend {
+    server 127.0.0.1:8000;
+}
+
+server {
+    listen 80;
+    server_name localhost;
+    client_max_body_size 1m;
+
+    # 覆盖而不是相信客户端自报的来源协议/身份。
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $remote_addr;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-User-ID "";
+    proxy_set_header X-User-Role "";
+    proxy_read_timeout 60s;
+
+    location / {
+        proxy_pass http://portal_backend;
+    }
+
+    # 未来独立部署：各组先提供独立进程和统一认证适配，再启用这些块。
+    # 使用不带结尾斜杠的 proxy_pass，保留 /groupN/ 前缀；子应用必须支持该前缀。
+    # 端口仅为示例，替换成实际内网地址；不要直接对外开放各组端口。
+    # location = /group2 { return 308 /group2/; }
+    # location /group2/ { proxy_pass http://127.0.0.1:8002; }
+    # location = /group3 { return 308 /group3/; }
+    # location /group3/ { proxy_pass http://127.0.0.1:8003; }
+    # location = /group4 { return 308 /group4/; }
+    # location /group4/ { proxy_pass http://127.0.0.1:8004; }
+    # location = /group5 { return 308 /group5/; }
+    # location /group5/ { proxy_pass http://127.0.0.1:8005; }
+    # location = /group6 { return 308 /group6/; }
+    # location /group6/ { proxy_pass http://127.0.0.1:8006; }
+    # location = /group7 { return 308 /group7/; }
+    # location /group7/ { proxy_pass http://127.0.0.1:8007; }
+    # location = /group8 { return 308 /group8/; }
+    # location /group8/ { proxy_pass http://127.0.0.1:8008; }
+}
+
+# 上线时配置域名、TLS 证书和 HTTP -> HTTPS 跳转，设置 SESSION_COOKIE_SECURE=true。
+# 若 Nginx 也容器化，127.0.0.1 不再代表 web 容器，改用同一 Docker 网络的 web:8000。
