@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% block title %}登录 · 协作空间{% endblock %}
+{% block title %}登录 · 南师GeoAI智教云{% endblock %}
 {% block content %}
 <section class="content-panel auth-panel mx-auto my-lg-3">
-  <span class="eyebrow">WELCOME BACK</span><h1 class="mt-3">欢迎回到协作空间</h1><p class="text-secondary mb-4">登录后，开启你的小组探索。</p>
+  <span class="eyebrow">GEOAI EDUCATION CLOUD</span><h1 class="mt-3">欢迎来到智教云</h1><p class="text-secondary mb-4">一个账号，连接地理教学的更多可能。</p>
   <form method="post">
     {{ form.hidden_tag() }}
     {% for field in [form.username, form.password] %}
