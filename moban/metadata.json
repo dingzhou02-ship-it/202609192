@@ -1,0 +1,6 @@
+{
+  "name": "南师GeoAI智教云",
+  "description": "面向中学地理教师和地理教育场景的“GeoAI + 地理教育”综合服务平台",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

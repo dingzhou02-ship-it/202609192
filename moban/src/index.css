@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  }
+}
+
+.font-calligraphy {
+  font-family: 'Ma Shan Zheng', 'LXGW WenKai TC', 'STKaiti', 'KaiTi', 'SimSun', cursive, serif;
+}
+
+.font-sans-modern {
+  font-family: 'Noto Sans SC', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.font-tech {
+  font-family: 'Orbitron', 'Rajdhani', -apple-system, sans-serif;
+}
+
+@keyframes globeHorizontalRotate {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-340px);
+  }
+}
+
+@keyframes orbitClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitCounterClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.globe-rotating-surface {
+  animation: globeHorizontalRotate 26s linear infinite;
+  animation-play-state: paused;
+}
+
+.globe-rotating-surface.is-rotating {
+  animation-play-state: running;
+}
+
+.orbit-rotating-1 {
+  transform-origin: 200px 200px;
+  animation: orbitClockwise 45s linear infinite;
+  animation-play-state: paused;
+}
+
+.orbit-rotating-1.is-rotating {
+  animation-play-state: running;
+}
+
+.orbit-rotating-2 {
+  transform-origin: 200px 200px;
+  animation: orbitCounterClockwise 50s linear infinite;
+  animation-play-state: paused;
+}
+
+.orbit-rotating-2.is-rotating {
+  animation-play-state: running;
+}
